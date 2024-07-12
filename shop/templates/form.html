@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" style="min-height: 90vh;">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="mt-5">Formulário de Produto</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+  
+  {% endblock content %}
