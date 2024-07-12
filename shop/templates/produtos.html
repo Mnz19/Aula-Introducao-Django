@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+      <div class="text-center text-white">
+          <h1 class="display-4 fw-bolder">{{nome}}</h1>
+          <p class="lead fw-normal text-white-50 mb-0">{{descricao}}</p>
+      </div>
+  </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for produto in produtos %}
+          <div class="col mb-5">
+              <div class="card h-100">
+                  <!-- Sale badge-->
+                  {% if produto.desconto %}
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Promoção</div>
+                  {% endif %}
+                  <!-- Product image-->
+                  <img class="card-img-top" src="{{produto.foto.url}}" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">{{produto.nome}}</h5>
+                          <!-- Product reviews-->
+                          {% if produto.estrela %}
+                              <div class="d-flex justify-content-center small text-warning mb-2">
+                                  {% for i in "12345"|slice:":produto.estrela" %}
+                                      <div class="bi-star-fill"></div>
+                                  {% endfor %}
+                              </div>
+                          {% endif %}
+                          <!-- Product price-->
+                          {% if produto.desconto %}
+                            <span class="text-muted text-decoration-line-through">${{produto.preco_promocional}}</span>
+                            <br>
+                          {% endif %}
+                          R${{produto.preco}}
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="">Ver detalhes</a></div>
+                  </div>
+              </div>
+          </div>
+        {% empty %}
+          <div class="alert alert-warning" role="alert">
+              Não há produtos cadastrados.
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
