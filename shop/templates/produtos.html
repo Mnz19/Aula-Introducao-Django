@@ -27,24 +27,25 @@
                   {% endif %}
                   <!-- Product details-->
                   <div class="card-body p-4">
-                      <div class="text-center">
-                          <!-- Product name-->
-                          <h5 class="fw-bolder">{{produto.nome}}</h5>
-                          <!-- Product reviews-->
-                          {% if produto.estrela %}
-                              <div class="d-flex justify-content-center small text-warning mb-2">
-                                  {% for i in "x"|ljust:produto.estrela %}
-                                      <div class="bi-star-fill"></div>
-                                  {% endfor %}
-                              </div>
-                          {% endif %}
-                          <!-- Product price-->
-                          {% if produto.desconto %}
-                            <span class="text-muted text-decoration-line-through">${{produto.preco_promocional}}</span>
-                            <br>
-                          {% endif %}
-                          R${{produto.preco}}
-                      </div>
+                    <div class="text-center">
+                      <!-- Product name-->
+                      <h5 class="fw-bolder">{{produto.nome}}</h5>
+                      <!-- Product reviews-->
+                      {% if produto.estrela %}
+                        <div class="d-flex justify-content-center small text-warning mb-2">
+                          {% for i in "x"|ljust:produto.estrela %}
+                            <div class="bi-star-fill"></div>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                      <!-- Product price-->
+                      {% if produto.desconto %}
+                        <span class="text-muted text-decoration-line-through">${{produto.preco}}</span>
+                        ${{produto.preco_promocional}}
+                      {% else %}
+                        ${{produto.preco}}
+                      {% endif %}
+                    </div>
                   </div>
                   <!-- Product actions-->
                   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
